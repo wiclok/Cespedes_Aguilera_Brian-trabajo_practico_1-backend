@@ -3,9 +3,19 @@ const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
 const morgan = require('morgan');
-const path = require('path');
 
 const app = express();
+
+// testeo de conexion a la base de datos
+const {sequelize} = require('./database');
+
+sequelize
+  .authenticate()
+  .then(() => console.log('Base de datos conectada'))
+  .catch((err) => {
+    console.log(err);
+    process.exit();
+  });
 
 // Middleware
 
