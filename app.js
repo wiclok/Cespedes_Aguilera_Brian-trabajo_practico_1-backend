@@ -7,7 +7,7 @@ const morgan = require('morgan');
 const app = express();
 
 // testeo de conexion a la base de datos
-const {sequelize} = require('./database');
+const {sequelize} = require('./config/database');
 
 sequelize
   .authenticate()

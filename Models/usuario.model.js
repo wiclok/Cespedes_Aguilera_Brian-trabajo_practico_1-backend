@@ -1,6 +1,5 @@
 // models/usuario.js
-const {DataTypes} = require('sequelize');
-const sequelize = require('../config/database');
+const {sequelize, DataTypes} = require('../config/database');
 
 const Usuario = sequelize.define('Usuario', {
   nombre: {
@@ -22,7 +21,7 @@ const Usuario = sequelize.define('Usuario', {
   },
 });
 
-Reserva.sync({force: false})
+Usuario.sync({force: false})
   .then(() => {
     console.log('Tabla de Reservas creada');
   })
