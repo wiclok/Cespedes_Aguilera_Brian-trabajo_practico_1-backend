@@ -30,9 +30,11 @@ app.use(express.json());
 
 // Routes
 
+app.use(require('./Routes/routes.router'));
+
 // Starting the server
 const PORT = process.env.PORT || 4000;
 
 app.listen(PORT, () => {
-  console.log(`Server listening on port ${PORT}`);
+  console.log(`Server listening on http://localhost:${PORT}`);
 });
