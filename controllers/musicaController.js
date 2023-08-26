@@ -1,0 +1,64 @@
+// controllers/musicaController.js
+const Musica = require('../Models/musica');
+const ctrlMusica = {};
+
+ctrlMusica.crearMusica = async (req, res) => {
+  try {
+    const nuevaMusica = await Musica.create(req.body);
+    res.status(201).json(nuevaMusica);
+  } catch (error) {
+    res.status(400).json({mensaje: 'Error al crear música'});
+  }
+};
+
+ctrlMusica.obtenerMusicas = async (req, res) => {
+  try {
+    const musicas = await Musica.findAll();
+    res.json(musicas);
+  } catch (error) {
+    res.status(500).json({mensaje: 'Error al obtener músicas'});
+  }
+};
+
+ctrlMusica.obtenerMusica = async (req, res) => {
+  try {
+    const musica = await Musica.findByPk(req.params.id);
+    if (musica) {
+      res.json(musica);
+    } else {
+      res.status(404).json({mensaje: 'Música no encontrada'});
+    }
+  } catch (error) {
+    res.status(500).json({mensaje: 'Error al obtener música'});
+  }
+};
+
+ctrlMusica.actualizarMusica = async (req, res) => {
+  try {
+    const musica = await Musica.findByPk(req.params.id);
+    if (musica) {
+      await musica.update(req.body);
+      res.json(musica);
+    } else {
+      res.status(404).json({mensaje: 'Música no encontrada'});
+    }
+  } catch (error) {
+    res.status(400).json({mensaje: 'Error al actualizar música'});
+  }
+};
+
+ctrlMusica.eliminarMusica = async (req, res) => {
+  try {
+    const musica = await Musica.findByPk(req.params.id);
+    if (musica) {
+      await musica.destroy();
+      res.json({mensaje: 'Música eliminada'});
+    } else {
+      res.status(404).json({mensaje: 'Música no encontrada'});
+    }
+  } catch (error) {
+    res.status(500).json({mensaje: 'Error al eliminar música'});
+  }
+};
+
+module.exports = ctrlMusica;
