@@ -4,10 +4,20 @@ const ctrlMusica = {};
 
 ctrlMusica.crearMusica = async (req, res) => {
   try {
-    const nuevaMusica = await Musica.create(req.body);
+    const {ID_playlist} = req.params;
+    const {titulo, artista, duracion, genero} = req.body;
+    const nuevaMusica = new Musica({
+      titulo,
+      artista,
+      duracion,
+      genero,
+      ID_playlist,
+    });
+    await nuevaMusica.save();
     res.status(201).json(nuevaMusica);
   } catch (error) {
     res.status(400).json({mensaje: 'Error al crear música'});
+    console.log(error);
   }
 };
 

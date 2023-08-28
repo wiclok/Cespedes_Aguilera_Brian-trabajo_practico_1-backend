@@ -1,6 +1,5 @@
 // models/musica.js
 const {sequelize, DataTypes} = require('../config/database');
-const playlist = require('./playlist');
 
 const Musica = sequelize.define('musica', {
   id: {

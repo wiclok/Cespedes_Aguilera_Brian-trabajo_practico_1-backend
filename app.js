@@ -19,6 +19,7 @@ sequelize
 
 // Middleware
 
+app.use(express.json());
 app.use(cors());
 app.use(
   helmet({
@@ -26,7 +27,6 @@ app.use(
   })
 );
 app.use(morgan('dev'));
-app.use(express.json());
 
 // Routes
 

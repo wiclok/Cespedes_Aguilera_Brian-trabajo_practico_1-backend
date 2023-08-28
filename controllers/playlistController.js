@@ -5,7 +5,15 @@ const ctrlPlaylist = {};
 
 ctrlPlaylist.crearPlaylist = async (req, res) => {
   try {
-    const nuevaPlaylist = await Playlist.create(req.body);
+    const {ID_usuario} = req.params;
+    const {nombre, descripcion} = req.body;
+    const nuevaPlaylist = new Playlist({
+      nombre,
+      descripcion,
+      ID_usuario,
+    });
+
+    await nuevaPlaylist.save();
     res.status(201).json(nuevaPlaylist);
   } catch (error) {
     res.status(400).json({mensaje: 'Error al crear playlist'});
