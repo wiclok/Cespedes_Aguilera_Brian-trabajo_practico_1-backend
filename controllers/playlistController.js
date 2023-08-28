@@ -1,4 +1,5 @@
 // controllers/playlistController.js
+const Musica = require('../Models/musica');
 const Playlist = require('../Models/playlist');
 const ctrlPlaylist = {};
 
@@ -8,6 +9,7 @@ ctrlPlaylist.crearPlaylist = async (req, res) => {
     res.status(201).json(nuevaPlaylist);
   } catch (error) {
     res.status(400).json({mensaje: 'Error al crear playlist'});
+    console.log(error);
   }
 };
 
@@ -22,7 +24,10 @@ ctrlPlaylist.obtenerPlaylists = async (req, res) => {
 
 ctrlPlaylist.obtenerPlaylist = async (req, res) => {
   try {
-    const playlist = await Playlist.findByPk(req.params.id);
+    const playlistId = req.params.id;
+    const playlist = await Playlist.findByPk(playlistId, {
+      include: Musica,
+    });
     if (playlist) {
       res.json(playlist);
     } else {
@@ -44,6 +49,7 @@ ctrlPlaylist.actualizarPlaylist = async (req, res) => {
     }
   } catch (error) {
     res.status(400).json({mensaje: 'Error al actualizar playlist'});
+    console.log(error);
   }
 };
 

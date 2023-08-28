@@ -1,8 +1,14 @@
 // models/musica.js
 const {sequelize, DataTypes} = require('../config/database');
-const Playlist = require('./playlist');
+const playlist = require('./playlist');
 
-const Musica = sequelize.define('Musica', {
+const Musica = sequelize.define('musica', {
+  id: {
+    type: DataTypes.INTEGER,
+    autoIncrement: true,
+    allowNull: false,
+    primaryKey: true,
+  },
   titulo: {
     type: DataTypes.STRING,
     allowNull: false,
@@ -17,9 +23,5 @@ const Musica = sequelize.define('Musica', {
     type: DataTypes.STRING,
   },
 });
-
-// Establecer la relación uno a muchos con Playlist
-Musica.belongsTo(Playlist);
-Playlist.hasMany(Musica);
 
 module.exports = Musica;

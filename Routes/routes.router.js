@@ -25,99 +25,36 @@ const {
 } = require('../controllers/musicaController');
 
 // Rutas para Usuario
-router.post(
-  '/usuarios',
-  [
-    body('nombre').notEmpty().withMessage('El nombre es obligatorio'),
-    body('correo').isEmail().withMessage('El correo electrónico no es válido'),
-    body('contraseña').notEmpty().withMessage('La contraseña es obligatoria'),
-  ],
-  crearUsuario
-);
+router.post('/usuarios', crearUsuario);
 
 router.get('/usuarios', obtenerUsuarios);
 
-router.get(
-  '/usuarios/:id',
-  [param('id').isInt().withMessage('ID de usuario no válido')],
-  obtenerUsuario
-);
+router.get('/usuarios/:id', obtenerUsuario);
 
-router.put(
-  '/usuarios/:id',
-  [
-    param('id').isInt().withMessage('ID de usuario no válido'),
-    body('nombre').notEmpty().withMessage('El nombre es obligatorio'),
-    body('correo').isEmail().withMessage('El correo electrónico no es válido'),
-    body('contraseña').notEmpty().withMessage('La contraseña es obligatoria'),
-  ],
-  actualizarUsuario
-);
+router.put('/usuarios/:id', actualizarUsuario);
 
-router.delete(
-  '/usuarios/:id',
-  [param('id').isInt().withMessage('ID de usuario no válido')],
-  eliminarUsuario
-);
+router.delete('/usuarios/:id', eliminarUsuario);
 
 // Rutas para Playlist
-router.post(
-  '/playlists',
-  [body('nombre').notEmpty().withMessage('El nombre es obligatorio')],
-  crearPlaylist
-);
+router.post('/playlists', crearPlaylist);
 
 router.get('/playlists', obtenerPlaylists);
 
-router.get(
-  '/playlists/:id',
-  [param('id').isInt().withMessage('ID de playlist no válido')],
-  obtenerPlaylist
-);
+router.get('/playlists/:id', obtenerPlaylist);
 
-router.put(
-  '/playlists/:id',
-  [
-    param('id').isInt().withMessage('ID de playlist no válido'),
-    body('nombre').notEmpty().withMessage('El nombre es obligatorio'),
-  ],
-  actualizarPlaylist
-);
+router.put('/playlists/:id', actualizarPlaylist);
 
-router.delete(
-  '/playlists/:id',
-  [param('id').isInt().withMessage('ID de playlist no válido')],
-  eliminarPlaylist
-);
+router.delete('/playlists/:id', eliminarPlaylist);
 
 // Rutas para Música
-router.post(
-  '/musica',
-  [body('titulo').notEmpty().withMessage('El título es obligatorio')],
-  crearMusica
-);
+router.post('/musica', crearMusica);
 
 router.get('/musica', obtenerMusicas);
 
-router.get(
-  '/musica/:id',
-  [param('id').isInt().withMessage('ID de música no válido')],
-  obtenerMusica
-);
+router.get('/musica/:id', obtenerMusica);
 
-router.put(
-  '/musica/:id',
-  [
-    param('id').isInt().withMessage('ID de música no válido'),
-    body('titulo').notEmpty().withMessage('El título es obligatorio'),
-  ],
-  actualizarMusica
-);
+router.put('/musica/:id', actualizarMusica);
 
-router.delete(
-  '/musica/:id',
-  [param('id').isInt().withMessage('ID de música no válido')],
-  eliminarMusica
-);
+router.delete('/musica/:id', eliminarMusica);
 
 module.exports = router;

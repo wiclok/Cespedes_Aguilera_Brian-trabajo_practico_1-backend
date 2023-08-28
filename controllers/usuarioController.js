@@ -1,5 +1,5 @@
 // controllers/usuarioController.js
-const Usuario = require('../Models/usuario.model');
+const Usuario = require('../Models/Usuario.model');
 const ctrlUsuario = {};
 
 ctrlUsuario.crearUsuario = async (req, res) => {
@@ -8,6 +8,7 @@ ctrlUsuario.crearUsuario = async (req, res) => {
     res.status(201).json(nuevoUsuario);
   } catch (error) {
     res.status(400).json({mensaje: 'Error al crear usuario'});
+    console.error(error);
   }
 };
 
@@ -44,6 +45,7 @@ ctrlUsuario.actualizarUsuario = async (req, res) => {
     }
   } catch (error) {
     res.status(400).json({mensaje: 'Error al actualizar usuario'});
+    console.log(error);
   }
 };
 
@@ -58,6 +60,7 @@ ctrlUsuario.eliminarUsuario = async (req, res) => {
     }
   } catch (error) {
     res.status(500).json({mensaje: 'Error al eliminar usuario'});
+    console.log(error);
   }
 };
 
